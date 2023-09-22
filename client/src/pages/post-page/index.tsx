@@ -28,7 +28,7 @@ const PostPage = () => {
       <div className="container">
         <div className="py-8 md:py-12">
           <Link to='/'>
-            <span className="transition-opacity hover:opacity-70">← Венуться назад</span>
+            <span className="transition-opacity duration-300 hover:opacity-70">← Венуться назад</span>
           </Link>
           <h1 className="text-2xl md:text-4xl mt-4">Пост:</h1>
           <div className="flex flex-col gap-5 md:gap-7 mt-5 md:mt-8">

@@ -18,7 +18,7 @@ const PostListItem: FunctionComponent<IProps> = ({ id, title, body }) => {
         <h3 className="text-lg md:text-2xl">{title}</h3>
       </div>
       <p className="text-base md:text-lg truncate">{body}</p>
-      <Button onClick={() => navigate(`/post/${id}`)}>Перейти →</Button>
+      <Button onClick={() => navigate(`/post/${id}`)}>Просмотр →</Button>
     </div>
   );
 };

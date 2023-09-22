@@ -5,7 +5,7 @@ const Header = () => {
     <header className="bg-white py-6">
       <div className="container">
         <Link to="/">
-          <p className="text-lg">LOGO</p>
+          <p className="text-lg">HEADER</p>
         </Link>
       </div>
     </header>
