@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <header className="bg-white py-6">
       <div className="container">
-        <p className="text-lg">LOGO</p>
+        <Link to="/">
+          <p className="text-lg">LOGO</p>
+        </Link>
       </div>
     </header>
   );
