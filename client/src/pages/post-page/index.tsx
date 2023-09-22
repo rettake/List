@@ -1,11 +1,7 @@
-import React from 'react'
-
-type Props = {}
-
-const index = (props: Props) => {
+const PostPage = () => {
   return (
-    <div>index</div>
+    <div>PostPage</div>
   )
 }
 
-export default index
+export default PostPage

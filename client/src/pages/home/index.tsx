@@ -1,11 +1,11 @@
-import React from 'react'
+import Layout from "../../shared/layout"
 
-type Props = {}
-
-const index = (props: Props) => {
+const Home = () => {
   return (
-    <div>index</div>
+    <Layout>
+      123123
+    </Layout>
   )
 }
 
-export default index
+export default Home
