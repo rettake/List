@@ -3,11 +3,20 @@ import { api } from "./api";
 
 export const postsApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getAllPosts: builder.query<IPost[], string>({
+    getAllPosts: builder.query<IPost[], number>({
       query: (page) => ({
-        url: `/posts?_limit=10&_page=${page}`,
+        url: `/posts?_limit=3&_page=${page}`,
         method: "GET",
       }),
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      merge: (currentCache, newItems) => {
+        currentCache.push(...newItems);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      }
     }),
     getPostById: builder.query<IPost, string>({
       query: (id) => ({
