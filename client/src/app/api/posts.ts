@@ -3,9 +3,9 @@ import { api } from "./api";
 
 export const postsApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getAllPosts: builder.query<IPost[], void>({
-      query: () => ({
-        url: "/posts",
+    getAllPosts: builder.query<IPost[], string>({
+      query: (page) => ({
+        url: `/posts?_limit=10&_page=${page}`,
         method: "GET",
       }),
     }),
