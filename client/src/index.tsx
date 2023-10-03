@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/home';
 import PostPage from './pages/post-page';
 import { Routes } from './utils/routes';
+import AddUser from './pages/add-user';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: Routes.postPage,
     element: <PostPage />
+  },
+  {
+    path: Routes.addUser,
+    element: <AddUser />
   }
 ])
 

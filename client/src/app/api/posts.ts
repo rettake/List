@@ -1,34 +1,47 @@
-import { IPost } from "../../interfaces/IPost";
+import { IUser } from "./../../interfaces/IUser";
 import { api } from "./api";
 
-export const postsApi = api.injectEndpoints({
+export const usersApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getAllPosts: builder.query<IPost[], number>({
-      query: (page) => ({
-        url: `/posts?_limit=3&_page=${page}`,
+    getAllUsers: builder.query<IUser[], void>({
+      query: () => ({
+        url: "/users",
         method: "GET",
       }),
-      serializeQueryArgs: ({ endpointName }) => {
-        return endpointName;
-      },
-      merge: (currentCache, newItems) => {
-        currentCache.push(...newItems);
-      },
-      forceRefetch({ currentArg, previousArg }) {
-        return currentArg !== previousArg;
-      }
+      providesTags: ["User"],
     }),
-    getPostById: builder.query<IPost, string>({
+    getUserById: builder.query<IUser, string>({
       query: (id) => ({
-        url: `/posts/${id}`,
+        url: `/users/${id}`,
         method: "GET",
       }),
+      providesTags: ["User"],
+    }),
+    deleteUserById: builder.mutation<null, number>({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"],
+    }),
+    addUser: builder.mutation<IUser, IUser>({
+      query: (payload) => ({
+        url: "/users",
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["User"],
     }),
   }),
 });
 
-export const { useGetAllPostsQuery, useGetPostByIdQuery } = postsApi;
+export const {
+  useGetAllUsersQuery,
+  useGetUserByIdQuery,
+  useDeleteUserByIdMutation,
+  useAddUserMutation,
+} = usersApi;
 
 export const {
-  endpoints: { getAllPosts, getPostById },
-} = postsApi;
+  endpoints: { getAllUsers, getUserById, deleteUserById, addUser },
+} = usersApi;

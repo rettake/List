@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 
 interface IProps {
-  title: string;
+  title?: number;
   body?: string | number;
 }
 

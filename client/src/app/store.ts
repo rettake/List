@@ -1,11 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import posts from "../entities/posts/postsSlice";
+import users from "../entities/users/usersSlice";
 import { api } from "./api/api";
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
-    posts,
+    users,
   },
   middleware: (getDefaultMiddleWare) => {
     return getDefaultMiddleWare().concat(api.middleware);

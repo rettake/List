@@ -1,5 +1,5 @@
-import { IPost } from "./IPost";
+import { IUser } from "./IUser";
 
-export interface IPostInitalState {
-  posts: IPost[] | null;
+export interface IUserInitalState {
+  users: IUser[] | null;
 }

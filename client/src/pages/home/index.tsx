@@ -1,30 +1,9 @@
-
-
-import { useEffect, useState } from "react";
-import { useGetAllPostsQuery } from "../../app/api/posts";
+import { useGetAllUsersQuery } from "../../app/api/posts";
 import Layout from "../../shared/layout";
 import PostListItem from "../../shared/post-list-item";
 
 const Home = () => {
-  const [page, setPage] = useState(1);
-  const { data, isFetching } = useGetAllPostsQuery(page);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const scrolledToBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight;
-      if (scrolledToBottom && !isFetching) {
-        console.log("Fetching more data...");
-        setPage(page + 1);
-      }
-    };
-
-    document.addEventListener("scroll", onScroll);
-
-    return function () {
-      document.removeEventListener("scroll", onScroll);
-    };
-  }, [page, isFetching]);
+  const { data } = useGetAllUsersQuery();
 
   return (
     <Layout>
@@ -36,8 +15,9 @@ const Home = () => {
               <PostListItem
                 key={item.id}
                 id={item.id}
-                title={item.title}
-                body={item.body}
+                firstName={item.first_name}
+                lastName={item.first_name}
+                avatar={item.avatar}
               />
             ))}
           </div>
