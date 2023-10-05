@@ -1,19 +1,20 @@
 import { useState } from "react";
 import io from "socket.io-client";
-import { IMessage } from "../../interfaces/IMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { setMessages } from "../../entities/messages/messagesSlice";
+import { RootState } from "../../app/store";
+import Message from "../message";
 
 const socket = io("127.0.0.1:5000");
 
 const Messages = () => {
   const [show, setShow] = useState<boolean>(true);
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  const dispatch = useDispatch();
 
-  socket.on("connect", () => {
-    console.log("Connected!");
-  });
+  const { messages } = useSelector((state: RootState) => state.messages);
 
   socket.on("message", (data) => {
-    setMessages([...messages, data]);
+    dispatch(setMessages(data));
   });
 
   const hadnleShow = () => {
@@ -35,11 +36,8 @@ const Messages = () => {
           </div>
           <div className="max-h-[400px] overflow-scroll">
             {show &&
-              messages.map((item, index) => (
-                <div key={index} className="mb-2 bg-slate-100 p-2 rounded-lg">
-                  <h5>{item.name}</h5>
-                  <p>{item.text}</p>
-                </div>
+              messages?.map((item, index) => (
+                <Message key={index} name={item.name} text={item.text} />
               ))}
           </div>
         </div>
