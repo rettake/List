@@ -23,7 +23,6 @@ const PostListItem: FunctionComponent<IProps> = ({
       <div className="p-8 rounded-2xl flex flex-row justify-between bg-white">
       <div className="flex flex-col justify-between">
         <div className="flex flex-row gap-2">
-          <span className="text-lg md:text-2xl">{id}.</span>
           <h3 className="text-lg md:text-2xl">
             {firstName} {lastName}
           </h3>
