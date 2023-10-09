@@ -12,9 +12,14 @@ const slice = createSlice({
   initialState: initialState,
   reducers: {
     setMessages: (state, action: PayloadAction<IMessage>) => {
-      state.messages?.length > 8
-        ? state.messages?.slice(-5).push(action.payload)
-        : state.messages?.push(action.payload);
+      if (
+        JSON.stringify(state.messages[state.messages.length - 1]) !==
+        JSON.stringify(action.payload)
+      ) { // Сравниваем объекты, чтобы определить, является сообщение дубликатом или нет
+        state.messages?.length > 8
+          ? state.messages = [...state.messages.slice(-8), action.payload] // Отображение последних восьми сообщений 
+          : state.messages?.push(action.payload);
+      }
     },
   },
   extraReducers: {},

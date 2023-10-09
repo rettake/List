@@ -14,6 +14,7 @@ const Messages = () => {
   const { messages } = useSelector((state: RootState) => state.messages);
 
   socket.on("message", (data) => {
+    console.log(data)
     dispatch(setMessages(data));
   });
 
