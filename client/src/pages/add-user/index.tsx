@@ -9,7 +9,6 @@ import Label from "../../shared/label";
 const AddUser = () => {
   const [addPost] = useAddUserMutation();
   const navigate = useNavigate();
-  const id = Date.now()
 
   const [form, setForm] = useState({
     first_name: "",
@@ -19,14 +18,14 @@ const AddUser = () => {
   });
 
   const onAdd = () => {
-    addPost({ ...form, id });
+    addPost({ ...form });
     setForm({
       first_name: "",
       last_name: "",
       avatar: "",
       email: "",
-    })
-    navigate(`/post/${id}`)
+    });
+    navigate(`/`);
   };
 
   return (
@@ -43,11 +42,7 @@ const AddUser = () => {
             className="p-4 rounded-2xl bg-white w-full md: max-w-[400px] mt-6"
             onSubmit={() => onAdd()}
           >
-            <Label
-              htmlFor="firstName"
-            >
-              Имя
-            </Label>
+            <Label htmlFor="firstName">Имя</Label>
             <InputField
               id="firstName"
               type="text"
@@ -56,11 +51,7 @@ const AddUser = () => {
               placeholder="Имя"
               onChange={(e) => setForm({ ...form, first_name: e.target.value })}
             />
-            <Label
-              htmlFor="lastName"
-            >
-              Фамилия
-            </Label>
+            <Label htmlFor="lastName">Фамилия</Label>
             <InputField
               id="lastName"
               type="text"
@@ -69,11 +60,7 @@ const AddUser = () => {
               placeholder="Фамилия"
               onChange={(e) => setForm({ ...form, last_name: e.target.value })}
             />
-            <Label
-              htmlFor="email"
-            >
-              Email
-            </Label>
+            <Label htmlFor="email">Email</Label>
             <InputField
               id="email"
               type="email"
@@ -82,11 +69,7 @@ const AddUser = () => {
               placeholder="Email"
               onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
-            <Label
-              htmlFor="avatar"
-            >
-              Аватар
-            </Label>
+            <Label htmlFor="avatar">Аватар</Label>
             <InputField
               id="avatar"
               type="text"
@@ -95,11 +78,7 @@ const AddUser = () => {
               placeholder="Ссылка на аватар"
               onChange={(e) => setForm({ ...form, avatar: e.target.value })}
             />
-            <Button
-              type="submit"
-            >
-              Добавить
-            </Button>
+            <Button type="submit">Добавить</Button>
           </form>
         </div>
       </div>

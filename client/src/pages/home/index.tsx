@@ -13,10 +13,10 @@ const Home = () => {
           <div className="flex flex-col gap-5 md:gap-7 mt-5 md:mt-8">
             {data?.map((item) => (
               <PostListItem
-                key={item.id}
-                id={item.id}
+                key={item._id}
+                id={item._id}
                 firstName={item.first_name}
-                lastName={item.first_name}
+                lastName={item.last_name}
                 avatar={item.avatar}
               />
             ))}

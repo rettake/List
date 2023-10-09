@@ -5,28 +5,28 @@ export const usersApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllUsers: builder.query<IUser[], void>({
       query: () => ({
-        url: "/users",
+        url: "/post",
         method: "GET",
       }),
       providesTags: ["User"],
     }),
     getUserById: builder.query<IUser, string>({
       query: (id) => ({
-        url: `/users/${id}`,
+        url: `/post/${id}`,
         method: "GET",
       }),
       providesTags: ["User"],
     }),
     deleteUserById: builder.mutation<null, number>({
       query: (id) => ({
-        url: `/users/${id}`,
+        url: `/post/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["User"],
     }),
-    addUser: builder.mutation<IUser, IUser>({
+    addUser: builder.mutation<IUser, Omit<IUser, "_id">>({
       query: (payload) => ({
-        url: "/users",
+        url: "/post",
         method: "POST",
         body: payload,
       }),
